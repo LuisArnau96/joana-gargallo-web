@@ -40,7 +40,7 @@ export function Navbar() {
           scrolled ? 'bg-black/40 backdrop-blur-md border-b border-white/10' : 'bg-transparent',
         )}
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+        <div className="flex items-center justify-between px-6 sm:px-10 lg:px-16 py-4">
 
           {/* Nombre — izquierda */}
           <motion.a
@@ -67,8 +67,8 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               onClick={() => handleNavClick('#contacto')}
-              className="hidden sm:flex items-center px-4 py-1.5 rounded-full border border-white/30 text-white/80 hover:border-white/60 hover:text-white transition-all duration-300 font-sans font-light"
-              style={{ fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+              className="hidden sm:flex items-center px-5 py-2 rounded-full border border-white/60 text-white hover:border-white hover:bg-white/10 transition-all duration-300 font-sans font-light"
+              style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
             >
               Contacto
             </motion.button>

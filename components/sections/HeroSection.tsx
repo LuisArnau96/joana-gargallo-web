@@ -117,22 +117,19 @@ export function HeroSection() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.35, ease }}
                   onClick={handleToggle}
-                  className="group flex items-center gap-2 hover:opacity-100 transition-opacity"
-                  style={{ opacity: 0.45 }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = '0.45')}
+                  className="group flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm hover:border-white/70 hover:bg-white/20 transition-all duration-300"
                 >
                   {isPhotography && (
-                    <ChevronLeft size={13} className="text-white" />
+                    <ChevronLeft size={14} className="text-white/80 group-hover:text-white transition-colors" />
                   )}
                   <span
-                    className="text-white font-sans font-light"
-                    style={{ fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}
+                    className="text-white/90 group-hover:text-white font-sans font-light transition-colors"
+                    style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
                   >
                     {toggleLabel}
                   </span>
                   {!isPhotography && (
-                    <ChevronRight size={13} className="text-white" />
+                    <ChevronRight size={14} className="text-white/80 group-hover:text-white transition-colors" />
                   )}
                 </motion.button>
               </AnimatePresence>
