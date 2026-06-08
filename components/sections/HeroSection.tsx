@@ -199,7 +199,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 1 }}
           onClick={handleScrollDown}
           className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 hover:opacity-60 transition-opacity"
-          style={{ color: isPhotography ? 'rgba(240,234,224,0.4)' : 'rgba(44,36,32,0.35)' }}
+          style={{ color: 'rgba(255,255,255,0.65)' }}
         >
           <span style={{ fontSize: '0.56rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
             Descubrir
