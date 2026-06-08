@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { menuItem } from '@/styles/animations'
 import { useModeContext } from '@/components/providers/ModeProvider'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { type Mode } from '@/types'
 
 const navLinks = [
@@ -26,6 +27,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { mode, setMode } = useModeContext()
+  const isDesktop = useMediaQuery('(min-width: 768px)')
+  const logoFilter = isDesktop && mode === 'yoga' ? 'brightness(0)' : 'brightness(0) invert(1)'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -70,7 +73,7 @@ export function Navbar() {
               src="/logo.svg"
               alt="Joana Gargallo"
               className="h-7 w-auto"
-              style={{ filter: mode === 'photography' ? 'brightness(0) invert(1)' : 'brightness(0)' }}
+              style={{ filter: logoFilter }}
             />
           </motion.a>
 
