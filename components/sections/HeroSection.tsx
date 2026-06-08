@@ -37,105 +37,89 @@ export function HeroSection() {
       {/* ── DESKTOP: split layout ── */}
       <div className="hidden md:flex h-full">
 
-        {/* Panel izquierdo — texto */}
+        {/* Panel izquierdo */}
         <motion.div
           animate={{ backgroundColor: panelBg }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 flex flex-col justify-between flex-shrink-0 px-10 py-8"
-          style={{ width: 'clamp(280px, 30vw, 400px)' }}
+          className="relative z-10 flex flex-col justify-between flex-shrink-0 px-8 py-8"
+          style={{ width: 'clamp(220px, 26vw, 340px)' }}
         >
-          {/* Logo */}
-          <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.svg"
-              alt="Joana Gargallo"
-              className="h-8 w-auto"
-              style={{ filter: isPhotography ? 'brightness(0) invert(1)' : 'brightness(0)' }}
-            />
+          {/* Número arriba */}
+          <span
+            className="font-sans font-light"
+            style={{ fontSize: '0.62rem', letterSpacing: '0.22em', color: panelAccent }}
+          >
+            {String(currentIndex + 1).padStart(2, '0')}
+          </span>
+
+          {/* Centro — nombre rotado */}
+          <div className="flex-1 flex items-center justify-center py-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`name-${mode}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ transform: 'rotate(-90deg)', whiteSpace: 'nowrap' }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'Cormorant Garamond, Georgia, serif',
+                    fontWeight: 300,
+                    fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+                    letterSpacing: '0.08em',
+                    color: panelText,
+                  }}
+                >
+                  JOANA GARGALLO
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Centro — nombre + subtítulo */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`panel-${mode}`}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.5, ease }}
-              className="flex flex-col gap-4"
-            >
-              {/* Número del modo */}
-              <span
-                className="font-sans font-light"
-                style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: panelAccent }}
+          {/* Abajo — subtítulo + disponible + scroll */}
+          <div className="flex flex-col gap-3">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`sub-${mode}`}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.35 }}
+                className="flex flex-col gap-2"
               >
-                {String(currentIndex + 1).padStart(2, '0')}
-              </span>
-
-              <h1
-                className="leading-none"
-                style={{
-                  fontFamily: 'Cormorant Garamond, Georgia, serif',
-                  fontWeight: 300,
-                  fontSize: 'clamp(2.4rem, 4vw, 3.6rem)',
-                  letterSpacing: '-0.02em',
-                  color: panelText,
-                }}
-              >
-                JOANA<br />GARGALLO
-              </h1>
-
-              <div
-                className="w-8 h-px"
-                style={{ backgroundColor: panelAccent, opacity: 0.6 }}
-              />
-
-              <div className="flex flex-col gap-1.5">
                 <p
                   className="font-sans font-light"
-                  style={{ fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: panelMuted }}
+                  style={{ fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: panelMuted }}
                 >
                   {isPhotography ? 'Fotógrafa' : 'Profesora de Yoga'}
                 </p>
-                <p
-                  className="font-sans font-light leading-relaxed max-w-[200px]"
-                  style={{ fontSize: '0.78rem', color: panelMuted, lineHeight: 1.6 }}
-                >
-                  {content.subheadline}
-                </p>
-              </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
+                  <span
+                    className="font-sans font-light"
+                    style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80' }}
+                  >
+                    Disponible
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
-              <div className="flex items-center gap-2 mt-1">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"
-                />
-                <span
-                  className="font-sans font-light"
-                  style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4ade80' }}
-                >
-                  Disponible
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Scroll indicator */}
-          <button
-            onClick={handleScrollDown}
-            className="flex flex-col items-start gap-1.5 transition-opacity hover:opacity-60"
-            style={{ color: panelMuted }}
-          >
-            <span style={{ fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
-              Descubrir
-            </span>
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            <button
+              onClick={handleScrollDown}
+              className="flex items-center gap-2 transition-opacity hover:opacity-50 mt-1"
+              style={{ color: panelMuted }}
             >
-              <ArrowDown size={14} />
-            </motion.div>
-          </button>
+              <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+                <ArrowDown size={13} />
+              </motion.div>
+              <span style={{ fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
+                Descubrir
+              </span>
+            </button>
+          </div>
 
           {/* Número grande decorativo — borde derecho del panel */}
           <div
