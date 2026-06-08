@@ -44,13 +44,8 @@ export function HeroSection() {
           className="relative z-10 flex flex-col justify-between flex-shrink-0 px-8 py-8"
           style={{ width: 'clamp(220px, 26vw, 340px)' }}
         >
-          {/* Número arriba */}
-          <span
-            className="font-sans font-light"
-            style={{ fontSize: '0.62rem', letterSpacing: '0.22em', color: panelAccent }}
-          >
-            {String(currentIndex + 1).padStart(2, '0')}
-          </span>
+          {/* Espacio superior */}
+          <div />
 
           {/* Centro — nombre rotado */}
           <div className="flex-1 flex items-center justify-center py-8">
@@ -121,21 +116,6 @@ export function HeroSection() {
             </button>
           </div>
 
-          {/* Número grande decorativo — borde derecho del panel */}
-          <div
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 select-none pointer-events-none"
-            style={{
-              fontFamily: 'Cormorant Garamond, Georgia, serif',
-              fontSize: 'clamp(6rem, 10vw, 9rem)',
-              fontWeight: 300,
-              lineHeight: 1,
-              letterSpacing: '-0.04em',
-              color: isPhotography ? 'rgba(196,168,130,0.12)' : 'rgba(44,36,32,0.07)',
-              zIndex: 20,
-            }}
-          >
-            {String(currentIndex + 1).padStart(2, '0')}
-          </div>
 
           {/* Borde derecho */}
           <div

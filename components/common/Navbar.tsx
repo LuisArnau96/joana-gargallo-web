@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { menuItem } from '@/styles/animations'
+import { useModeContext } from '@/components/providers/ModeProvider'
+import { type Mode } from '@/types'
 
 const navLinks = [
   { label: 'Inicio', href: '#inicio' },
@@ -15,9 +17,15 @@ const navLinks = [
   { label: 'Contacto', href: '#contacto' },
 ]
 
+const MODES: { value: Mode; label: string; sub: string }[] = [
+  { value: 'yoga', label: 'Yoga', sub: 'Profesora de Yoga' },
+  { value: 'photography', label: 'Fotografía', sub: 'Fotógrafa' },
+]
+
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { mode, setMode } = useModeContext()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -32,6 +40,14 @@ export function Navbar() {
     }, 100)
   }
 
+  const handleModeSwitch = (m: Mode) => {
+    setMode(m)
+    setOpen(false)
+    setTimeout(() => {
+      document.querySelector('#inicio')?.scrollIntoView({ behavior: 'smooth' })
+    }, 150)
+  }
+
   return (
     <>
       <header
@@ -41,8 +57,6 @@ export function Navbar() {
         )}
       >
         <div className="flex items-center justify-between px-6 sm:px-10 lg:px-16 py-4">
-
-          {/* Nombre — izquierda */}
           <motion.a
             href="#inicio"
             onClick={(e) => { e.preventDefault(); handleNavClick('#inicio') }}
@@ -60,7 +74,6 @@ export function Navbar() {
             />
           </motion.a>
 
-          {/* Derecha — contacto + hamburguesa */}
           <div className="flex items-center gap-3">
             <motion.button
               initial={{ opacity: 0 }}
@@ -87,7 +100,6 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Overlay */}
       <AnimatePresence>
         {open && (
           <>
@@ -108,6 +120,7 @@ export function Navbar() {
               className="fixed top-0 right-0 bottom-0 z-[100] w-full max-w-sm flex flex-col"
               style={{ backgroundColor: '#1C1713' }}
             >
+              {/* Header panel */}
               <div className="flex items-center justify-between px-8 py-6 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                 <span className="font-sans font-light text-white/40" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                   Menú
@@ -117,7 +130,54 @@ export function Navbar() {
                 </button>
               </div>
 
-              <nav className="flex flex-col flex-1 px-8 py-8 gap-1">
+              {/* Selector de perfil */}
+              <div className="px-8 py-5 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                <p className="font-sans text-white/30 mb-3" style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+                  Perfil activo
+                </p>
+                <div className="flex flex-col gap-2">
+                  {MODES.map((m) => {
+                    const active = mode === m.value
+                    return (
+                      <button
+                        key={m.value}
+                        onClick={() => handleModeSwitch(m.value)}
+                        className={cn(
+                          'flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-300 text-left',
+                          active
+                            ? 'border-[#C4A882]/50 bg-[#C4A882]/10'
+                            : 'border-white/8 bg-white/4 hover:border-white/20 hover:bg-white/8',
+                        )}
+                        style={{ borderColor: active ? 'rgba(196,168,130,0.4)' : 'rgba(255,255,255,0.06)' }}
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          <span
+                            className="font-sans font-medium"
+                            style={{ fontSize: '0.8rem', color: active ? '#C4A882' : 'rgba(255,255,255,0.5)' }}
+                          >
+                            {m.label}
+                          </span>
+                          <span
+                            className="font-sans font-light"
+                            style={{ fontSize: '0.62rem', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.25)' }}
+                          >
+                            {m.sub}
+                          </span>
+                        </div>
+                        {active && (
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: '#C4A882' }}
+                          />
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Links de navegación */}
+              <nav className="flex flex-col flex-1 px-8 py-6 gap-1 overflow-y-auto">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.href}
@@ -125,18 +185,18 @@ export function Navbar() {
                     initial="closed"
                     animate="open"
                     custom={i}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.04 }}
                     href={link.href}
                     onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                    className="group flex items-center gap-4 py-3.5 border-b"
+                    className="group flex items-center gap-4 py-3 border-b"
                     style={{ borderColor: 'rgba(255,255,255,0.06)' }}
                   >
-                    <span className="font-sans text-white/25 group-hover:text-white/50 transition-colors w-5 text-right" style={{ fontSize: '0.6rem' }}>
+                    <span className="font-sans text-white/20 group-hover:text-white/45 transition-colors w-5 text-right" style={{ fontSize: '0.58rem' }}>
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span
-                      className="text-white/70 group-hover:text-white transition-colors"
-                      style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: '1.9rem', fontWeight: 300 }}
+                      className="text-white/65 group-hover:text-white transition-colors"
+                      style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: '1.75rem', fontWeight: 300 }}
                     >
                       {link.label}
                     </span>
@@ -144,11 +204,12 @@ export function Navbar() {
                 ))}
               </nav>
 
-              <div className="px-8 py-6 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-                <p className="font-sans text-white/30" style={{ fontSize: '0.65rem', letterSpacing: '0.08em' }}>
+              {/* Footer */}
+              <div className="px-8 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                <p className="font-sans text-white/25" style={{ fontSize: '0.63rem', letterSpacing: '0.06em' }}>
                   joanagargalloantoni@gmail.com
                 </p>
-                <p className="font-sans text-white/20 mt-1" style={{ fontSize: '0.6rem' }}>
+                <p className="font-sans text-white/15 mt-0.5" style={{ fontSize: '0.58rem' }}>
                   Puerto de Sagunto, Valencia
                 </p>
               </div>
