@@ -102,20 +102,7 @@ export function HeroSection() {
               </motion.div>
             </AnimatePresence>
 
-            <button
-              onClick={handleScrollDown}
-              className="flex items-center gap-2 transition-opacity hover:opacity-50 mt-1"
-              style={{ color: panelMuted }}
-            >
-              <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-                <ArrowDown size={13} />
-              </motion.div>
-              <span style={{ fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
-                Descubrir
-              </span>
-            </button>
           </div>
-
 
           {/* Borde derecho */}
           <div
@@ -205,6 +192,22 @@ export function HeroSection() {
             </AnimatePresence>
           </div>
         </div>
+        {/* Descubrir — centrado en todo el hero */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          onClick={handleScrollDown}
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 hover:opacity-60 transition-opacity"
+          style={{ color: isPhotography ? 'rgba(240,234,224,0.4)' : 'rgba(44,36,32,0.35)' }}
+        >
+          <span style={{ fontSize: '0.56rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
+            Descubrir
+          </span>
+          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+            <ArrowDown size={13} />
+          </motion.div>
+        </motion.button>
       </div>
 
       {/* ── MOBILE: imagen fullscreen + panel overlay ── */}

@@ -70,7 +70,7 @@ export function Navbar() {
               src="/logo.svg"
               alt="Joana Gargallo"
               className="h-7 w-auto"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              style={{ filter: mode === 'photography' ? 'brightness(0) invert(1)' : 'brightness(0)' }}
             />
           </motion.a>
 
