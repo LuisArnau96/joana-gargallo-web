@@ -213,7 +213,7 @@ export function HeroSection() {
               whileHover={{ scale: 1.08 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             >
-              <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
+              <IsotipoIcon width={130} opacity={isDragging ? 1 : 0.9} />
             </motion.div>
 
             {/* Hint en reposo */}
@@ -222,7 +222,7 @@ export function HeroSection() {
                 <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   transition={{ delay: 1.5 }}
-                  className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
+                  className="absolute -bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 whitespace-nowrap"
                 >
                   <div className="flex items-center gap-2">
                     <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>
@@ -303,7 +303,7 @@ export function HeroSection() {
             whileHover={{ scale: 1.08 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
           >
-            <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
+            <IsotipoIcon width={130} opacity={isDragging ? 1 : 0.9} />
           </motion.div>
 
           {/* Hint en reposo */}
@@ -312,7 +312,7 @@ export function HeroSection() {
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 transition={{ delay: 1.5 }}
-                className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
+                className="absolute -bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 whitespace-nowrap"
               >
                 <div className="flex items-center gap-2">
                   <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>
@@ -395,7 +395,7 @@ export function HeroSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 1 }}
-                  className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
+                  className="absolute -bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 whitespace-nowrap"
                 >
                   <div className="flex items-center gap-2">
                     <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>

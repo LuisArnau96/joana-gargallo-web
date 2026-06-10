@@ -14,7 +14,7 @@ export const siteSettings: SiteSettings = {
 export const heroData: HeroData = {
   yoga: {
     backgroundImage:
-      'https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1920&q=80',
+      'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80',
     headline: 'Encuentra tu equilibrio',
     subheadline:
       'Clases de yoga en Puerto de Sagunto pensadas para reconectar con tu cuerpo, tu respiración y tu calma interior.',
