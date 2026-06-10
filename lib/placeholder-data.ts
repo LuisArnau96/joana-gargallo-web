@@ -13,7 +13,7 @@ export const siteSettings: SiteSettings = {
 
 export const heroData: HeroData = {
   yoga: {
-    backgroundImage: '/images/hero-yoga.jpeg',
+    backgroundImage: '/images/hero-yoga.png',
     isDark: false,
     objectPosition: 'center 38%',
     headline: 'Encuentra tu equilibrio',
@@ -23,7 +23,7 @@ export const heroData: HeroData = {
     ctaSecondary: 'Conocer más',
   },
   photography: {
-    backgroundImage: '/images/hero-visual.webp',
+    backgroundImage: '/images/hero-visual.png',
     isDark: true,
     objectPosition: 'center 55%',
     headline: 'La imagen como lenguaje',
