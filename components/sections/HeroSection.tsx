@@ -96,7 +96,7 @@ export function HeroSection() {
       />
 
       {/* Centered content */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 px-4" style={{ paddingBottom: '6vh' }}>
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start gap-4 px-4" style={{ paddingTop: '14vh' }}>
 
         {/* Isotipo row with mode labels */}
         <div className="flex items-center gap-6 md:gap-10">

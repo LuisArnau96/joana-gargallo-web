@@ -15,7 +15,7 @@ export const heroData: HeroData = {
   yoga: {
     backgroundImage: '/images/hero-yoga.png',
     isDark: false,
-    objectPosition: 'center 38%',
+    objectPosition: 'center 10%',
     headline: 'Encuentra tu equilibrio',
     subheadline:
       'Clases de yoga en Puerto de Sagunto pensadas para reconectar con tu cuerpo, tu respiración y tu calma interior.',
