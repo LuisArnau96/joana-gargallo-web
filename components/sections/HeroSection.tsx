@@ -95,11 +95,11 @@ export function HeroSection() {
           {/* Left label — Yoga */}
           <motion.button
             onClick={() => currentIndex > 0 && setMode(MODES[currentIndex - 1])}
-            animate={{ opacity: mode === 'yoga' ? 0 : 0.55 }}
-            whileHover={{ opacity: mode === 'yoga' ? 0 : 0.85 }}
+            animate={{ opacity: mode === 'yoga' ? 0 : 0.85 }}
+            whileHover={{ opacity: mode === 'yoga' ? 0 : 1 }}
             transition={{ duration: 0.4 }}
-            className="font-sans font-light text-white whitespace-nowrap select-none"
-            style={{ fontSize: 'clamp(0.55rem, 1.2vw, 0.7rem)', letterSpacing: '0.18em', textTransform: 'uppercase' }}
+            className="font-sans font-medium text-white whitespace-nowrap select-none"
+            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
           >
             ← Yoga
           </motion.button>
@@ -133,11 +133,11 @@ export function HeroSection() {
           {/* Right label — Visual */}
           <motion.button
             onClick={() => currentIndex < MODES.length - 1 && setMode(MODES[currentIndex + 1])}
-            animate={{ opacity: mode === 'photography' ? 0 : 0.55 }}
-            whileHover={{ opacity: mode === 'photography' ? 0 : 0.85 }}
+            animate={{ opacity: mode === 'photography' ? 0 : 0.85 }}
+            whileHover={{ opacity: mode === 'photography' ? 0 : 1 }}
             transition={{ duration: 0.4 }}
-            className="font-sans font-light text-white whitespace-nowrap select-none"
-            style={{ fontSize: 'clamp(0.55rem, 1.2vw, 0.7rem)', letterSpacing: '0.18em', textTransform: 'uppercase' }}
+            className="font-sans font-medium text-white whitespace-nowrap select-none"
+            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
           >
             Visual →
           </motion.button>
@@ -172,12 +172,13 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.4 }}
-            className="text-center font-sans font-light"
+            className="text-center font-sans font-medium"
             style={{
-              fontSize: 'clamp(0.6rem, 1.4vw, 0.75rem)',
-              letterSpacing: '0.2em',
+              fontSize: 'clamp(0.65rem, 1.4vw, 0.8rem)',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
-              color: 'rgba(212,180,130,0.9)',
+              color: 'rgba(220,188,138,1)',
+              textShadow: '0 1px 12px rgba(0,0,0,0.4)',
             }}
           >
             {subtitle}
@@ -214,8 +215,8 @@ export function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="font-sans font-light text-white/40"
-                style={{ fontSize: 'clamp(0.5rem, 1vw, 0.58rem)', letterSpacing: '0.16em', textTransform: 'uppercase' }}
+                className="font-sans font-medium text-white/70"
+                style={{ fontSize: 'clamp(0.55rem, 1vw, 0.65rem)', letterSpacing: '0.16em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
               >
                 Arrastra para ver el otro perfil
               </motion.span>
