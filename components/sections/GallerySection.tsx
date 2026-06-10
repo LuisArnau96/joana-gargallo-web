@@ -110,7 +110,7 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_56px] gap-0 items-start">
 
         {/* Imagen */}
-        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
+        <div className="relative overflow-hidden">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={img._id}
@@ -120,17 +120,18 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
               animate="center"
               exit="exit"
               transition={{ duration: 0.6, ease }}
-              className="absolute inset-0 cursor-pointer"
+              className="relative cursor-pointer flex justify-center"
               onClick={() => onOpenLightbox(current)}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover"
+                className="w-auto max-w-full"
+                style={{ maxHeight: '75vh', display: 'block' }}
               />
               {/* Overlay hover */}
-              <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+              <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center opacity-0 hover:opacity-100 pointer-events-none group-hover:pointer-events-auto">
                 <ZoomIn size={28} className="text-white" />
               </div>
             </motion.div>
