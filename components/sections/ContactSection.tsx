@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, Mail, Send, CheckCircle, ExternalLink } from 'lucide-react'
+import { Mail, Send, CheckCircle, ExternalLink } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
 import { siteSettings } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
@@ -101,7 +101,7 @@ export function ContactSection() {
       setSent(true)
       reset()
     } catch {
-      setError('Algo salió mal. Escríbeme directamente a Instagram o WhatsApp.')
+      setError('Algo salió mal. Escríbeme directamente a Instagram o por email.')
     } finally {
       setSending(false)
     }
@@ -160,13 +160,6 @@ export function ContactSection() {
               Canales directos
             </p>
 
-            <ContactLink
-              href={`https://wa.me/${siteSettings.whatsappNumber}`}
-              icon={MessageCircle}
-              label="WhatsApp"
-              sublabel="La forma más rápida"
-              isPhotography={isPhotography}
-            />
             <ContactLink
               href={`https://instagram.com/${siteSettings.instagramHandle}`}
               icon={ExternalLink}

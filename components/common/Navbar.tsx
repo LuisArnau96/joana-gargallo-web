@@ -42,7 +42,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { mode, setMode } = useModeContext()
   const isDesktop = useMediaQuery('(min-width: 768px)')
-  const logoFilter = isDesktop && mode === 'yoga' ? 'brightness(0)' : 'brightness(0) invert(1)'
+  const logoFilter = 'brightness(0) invert(1)'
 
   // Al abrir el menú, expandir el rol activo
   useEffect(() => {
