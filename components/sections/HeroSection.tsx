@@ -162,10 +162,10 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
             className="text-center leading-none"
             style={{
-              fontFamily: 'Cormorant Garamond, Georgia, serif',
-              fontWeight: 300,
-              fontSize: 'clamp(3rem, 8vw, 6.5rem)',
-              letterSpacing: '-0.01em',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(2.2rem, 6vw, 5rem)',
+              letterSpacing: '-0.02em',
               color: textPrimary,
               textShadow: shadow,
             }}
