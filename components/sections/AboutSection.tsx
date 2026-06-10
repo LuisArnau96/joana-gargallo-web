@@ -55,7 +55,7 @@ export function AboutSection() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={aboutData.profileImage}
+                src={aboutData[mode].profileImage ?? aboutData.profileImage}
                 alt="Joana Gargallo"
                 className="w-full h-full object-cover"
               />

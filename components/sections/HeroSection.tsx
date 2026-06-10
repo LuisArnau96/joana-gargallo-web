@@ -75,7 +75,7 @@ export function HeroSection() {
           className="absolute inset-0"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={content.backgroundImage} alt="" className="w-full h-full object-cover" loading="eager" />
+          <img src={content.backgroundImage} alt="" className="w-full h-full object-cover" style={{ objectPosition: content.objectPosition ?? 'center center' }} loading="eager" />
         </motion.div>
       </AnimatePresence>
 
