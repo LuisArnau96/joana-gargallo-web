@@ -24,9 +24,9 @@ export const heroData: HeroData = {
   photography: {
     backgroundImage:
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80',
-    headline: 'La naturaleza como lenguaje',
+    headline: 'La imagen como lenguaje',
     subheadline:
-      'Fotografía que captura la quietud de los paisajes, la luz del amanecer y la autenticidad de las personas.',
+      'Comunicación audiovisual que captura la quietud de los paisajes, la luz del amanecer y la autenticidad de las personas.',
     ctaPrimary: 'Ver portfolio',
     ctaSecondary: 'Trabajemos juntos',
   },

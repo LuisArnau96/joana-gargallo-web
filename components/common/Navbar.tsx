@@ -20,7 +20,7 @@ const navLinks = [
 
 const MODES: { value: Mode; label: string; sub: string }[] = [
   { value: 'yoga', label: 'Yoga', sub: 'Profesora de Yoga' },
-  { value: 'photography', label: 'Fotografía', sub: 'Fotógrafa' },
+  { value: 'photography', label: 'Comunicación Audiovisual', sub: 'Fotógrafa · Audiovisual' },
 ]
 
 export function Navbar() {
