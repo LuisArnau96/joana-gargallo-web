@@ -13,7 +13,7 @@ export const siteSettings: SiteSettings = {
 
 export const heroData: HeroData = {
   yoga: {
-    backgroundImage: '/images/yoga-studio.jpg',
+    backgroundImage: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1920&q=80',
     isDark: false,
     headline: 'Encuentra tu equilibrio',
     subheadline:
