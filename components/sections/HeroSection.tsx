@@ -29,10 +29,10 @@ function IsotipoIcon({ width, opacity }: { width: number; opacity?: number }) {
         d="M6.80359 28.6212L32.5426 7.07962C33.7663 6.05543 35.1356 5.18696 36.6701 4.61013C40.4478 3.19008 48.372 0.673372 56.2963 1.03512C61.2843 1.26284 67.9759 2.5274 73.7854 3.83736C81.3634 5.54609 86.4213 11.8909 86.4213 19.0257V22.9431C86.4213 28.0012 89.1883 32.7242 93.7941 35.5276C100.09 39.3595 102.752 46.6125 99.7953 52.9764C96.9988 58.9959 93.2127 66.373 89.1599 72.0466C80.944 83.5485 65.0599 85.5488 65.0599 85.5488L29.6636 86.9851C21.4906 87.3168 14.541 82.0507 17.677 75.1435C17.7664 74.9466 17.8591 74.7478 17.9553 74.547C19.1279 72.1 19.989 69.9322 20.6206 68.0879C22.0697 63.8568 19.6191 59.6516 15.3633 57.5252L10.2989 54.9948C-0.449871 49.6242 -2.23129 36.1828 6.80359 28.6212Z"
         fill="white"
       />
-      {/* Interior — oscuro (crea el recorte) */}
+      {/* Interior — transparente, se ve la imagen */}
       <path
         d="M38.8158 30.5403L51.9351 19.9565C53.8434 18.417 56.6587 18.2774 58.7379 19.6193C59.9004 20.3696 60.699 21.503 60.9655 22.7807L62.3299 29.3225C62.9096 32.1016 64.5829 34.5902 67.0336 36.3181C70.3533 38.6587 72.3124 42.3838 71.5204 46.1471C69.0823 57.7326 62.1831 64.3106 54.8732 67.794C46.4749 71.7959 38.5769 64.3979 38.5769 55.7404V54.8418C38.5769 52.2889 37.7685 49.7906 36.2494 47.6485C32.3513 42.1518 33.443 34.8749 38.8158 30.5403Z"
-        fill="rgba(20,15,10,0.75)"
+        fill="none"
       />
     </svg>
   )
@@ -214,18 +214,40 @@ export function HeroSection() {
                 <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
               </motion.div>
 
-              {/* Hint en reposo */}
-              {!isDragging && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.5 }}
-                  className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-white/40 font-sans font-light whitespace-nowrap"
-                  style={{ fontSize: '0.56rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}
-                >
-                  ← desliza →
-                </motion.div>
-              )}
+              {/* Hint en reposo — flechas animadas */}
+              <AnimatePresence>
+                {!isDragging && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 1.5 }}
+                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 whitespace-nowrap"
+                  >
+                    <div className="flex items-center gap-2">
+                      <motion.span
+                        animate={{ x: [-4, 0, -4] }}
+                        transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                        className="text-white/60"
+                        style={{ fontSize: '0.75rem' }}
+                      >←</motion.span>
+                      <span className="text-white/50 font-sans font-light" style={{ fontSize: '0.55rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+                        desliza
+                      </span>
+                      <motion.span
+                        animate={{ x: [4, 0, 4] }}
+                        transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                        className="text-white/60"
+                        style={{ fontSize: '0.75rem' }}
+                      >→</motion.span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {currentIndex > 0 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Yoga</span>}
+                      {currentIndex < MODES.length - 1 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Comunic. Audiovisual</span>}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
@@ -323,7 +345,7 @@ export function HeroSection() {
               <IsotipoIcon width={90} opacity={0.9} />
             </motion.div>
 
-            {/* Hint desliza */}
+            {/* Hint desliza móvil */}
             <AnimatePresence>
               {!isDragging && (
                 <motion.div
@@ -331,10 +353,13 @@ export function HeroSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 1 }}
-                  className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-white/45 font-sans font-light whitespace-nowrap"
-                  style={{ fontSize: '0.54rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}
+                  className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 whitespace-nowrap"
                 >
-                  ← desliza →
+                  <div className="flex items-center gap-2">
+                    <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>
+                    <span className="text-white/50 font-sans font-light" style={{ fontSize: '0.55rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>desliza para cambiar</span>
+                    <motion.span animate={{ x: [4, 0, 4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>→</motion.span>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

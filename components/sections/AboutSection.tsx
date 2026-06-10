@@ -61,11 +61,6 @@ export function AboutSection() {
               />
             </div>
 
-            {/* Dot decorativo */}
-            <div
-              className="absolute -bottom-3 -right-3 w-16 h-16 rounded-full opacity-20"
-              style={{ backgroundColor: accent }}
-            />
           </motion.div>
 
           {/* Texto — derecha */}
