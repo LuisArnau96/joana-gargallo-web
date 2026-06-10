@@ -63,7 +63,7 @@ export function HeroSection() {
     <section id="inicio" className="relative h-screen min-h-[600px] overflow-hidden">
 
       {/* ── DESKTOP: split layout ── */}
-      <div className="hidden md:flex h-full">
+      <div className="hidden md:flex h-full relative">
 
         {/* Panel izquierdo */}
         <motion.div
@@ -152,102 +152,6 @@ export function HeroSection() {
             className="absolute inset-0"
           />
 
-          {/* ── ISOTIPO arrastrable — centro de la imagen ── */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="relative pointer-events-auto" style={{ width: 160, height: 160 }}>
-
-              {/* Hints direccionales */}
-              <AnimatePresence>
-                {isDragging && leftLabel && (
-                  <motion.span
-                    initial={{ opacity: 0, x: 8 }}
-                    animate={{ opacity: hint === 'left' ? 1 : 0.3, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute right-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
-                    style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
-                  >
-                    ← {leftLabel}
-                  </motion.span>
-                )}
-                {isDragging && rightLabel && (
-                  <motion.span
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: hint === 'right' ? 1 : 0.3, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute left-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
-                    style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
-                  >
-                    {rightLabel} →
-                  </motion.span>
-                )}
-              </AnimatePresence>
-
-              {/* Isotipo */}
-              <motion.div
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.3}
-                style={{ x: dragX, rotate: isotopoRotate, scale: isotopoScale }}
-                onDragStart={() => setIsDragging(true)}
-                onDrag={(_, info) => {
-                  if (info.offset.x < -20) setHint('left')
-                  else if (info.offset.x > 20) setHint('right')
-                  else setHint(null)
-                }}
-                onDragEnd={(_, info) => {
-                  setIsDragging(false)
-                  setHint(null)
-                  dragX.set(0)
-                  if (info.offset.x < -DRAG_THRESHOLD && currentIndex > 0) {
-                    setMode(MODES[currentIndex - 1])
-                  } else if (info.offset.x > DRAG_THRESHOLD && currentIndex < MODES.length - 1) {
-                    setMode(MODES[currentIndex + 1])
-                  }
-                }}
-                className="cursor-grab active:cursor-grabbing select-none"
-                whileHover={{ scale: 1.08 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              >
-                <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
-              </motion.div>
-
-              {/* Hint en reposo — flechas animadas */}
-              <AnimatePresence>
-                {!isDragging && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 1.5 }}
-                    className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
-                  >
-                    <div className="flex items-center gap-2">
-                      <motion.span
-                        animate={{ x: [-4, 0, -4] }}
-                        transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                        className="text-white/60"
-                        style={{ fontSize: '0.75rem' }}
-                      >←</motion.span>
-                      <span className="text-white/50 font-sans font-light" style={{ fontSize: '0.55rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
-                        desliza
-                      </span>
-                      <motion.span
-                        animate={{ x: [4, 0, 4] }}
-                        transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                        className="text-white/60"
-                        style={{ fontSize: '0.75rem' }}
-                      >→</motion.span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      {currentIndex > 0 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Yoga</span>}
-                      {currentIndex < MODES.length - 1 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Comunic. Audiovisual</span>}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
           {/* Label modo — bottom left */}
           <div className="absolute bottom-8 left-6 z-10">
             <AnimatePresence mode="wait">
@@ -262,6 +166,75 @@ export function HeroSection() {
               >
                 {isPhotography ? 'Comunicación Audiovisual' : 'Yoga'}
               </motion.span>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* ── ISOTIPO — placeholder inside wrapper, real one outside below ── */}
+        <div className="hidden">
+          <div className="relative pointer-events-auto" style={{ width: 160, height: 160 }}>
+
+            {/* Hints direccionales al arrastrar */}
+            <AnimatePresence>
+              {isDragging && leftLabel && (
+                <motion.span
+                  initial={{ opacity: 0, x: 8 }} animate={{ opacity: hint === 'left' ? 1 : 0.3, x: 0 }} exit={{ opacity: 0 }}
+                  className="absolute right-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
+                  style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+                >← {leftLabel}</motion.span>
+              )}
+              {isDragging && rightLabel && (
+                <motion.span
+                  initial={{ opacity: 0, x: -8 }} animate={{ opacity: hint === 'right' ? 1 : 0.3, x: 0 }} exit={{ opacity: 0 }}
+                  className="absolute left-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
+                  style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+                >{rightLabel} →</motion.span>
+              )}
+            </AnimatePresence>
+
+            {/* Isotipo arrastrable */}
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.3}
+              style={{ x: dragX, rotate: isotopoRotate, scale: isotopoScale }}
+              onDragStart={() => setIsDragging(true)}
+              onDrag={(_, info) => {
+                if (info.offset.x < -20) setHint('left')
+                else if (info.offset.x > 20) setHint('right')
+                else setHint(null)
+              }}
+              onDragEnd={(_, info) => {
+                setIsDragging(false); setHint(null); dragX.set(0)
+                if (info.offset.x < -DRAG_THRESHOLD && currentIndex > 0) setMode(MODES[currentIndex - 1])
+                else if (info.offset.x > DRAG_THRESHOLD && currentIndex < MODES.length - 1) setMode(MODES[currentIndex + 1])
+              }}
+              className="cursor-grab active:cursor-grabbing select-none"
+              whileHover={{ scale: 1.08 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            >
+              <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
+            </motion.div>
+
+            {/* Hint en reposo */}
+            <AnimatePresence>
+              {!isDragging && (
+                <motion.div
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ delay: 1.5 }}
+                  className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
+                >
+                  <div className="flex items-center gap-2">
+                    <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>
+                    <span className="text-white/50 font-sans font-light" style={{ fontSize: '0.55rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>desliza</span>
+                    <motion.span animate={{ x: [4, 0, 4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>→</motion.span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {currentIndex > 0 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Yoga</span>}
+                    {currentIndex < MODES.length - 1 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Comunic. Audiovisual</span>}
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         </div>
@@ -282,6 +255,78 @@ export function HeroSection() {
             <ArrowDown size={13} />
           </motion.div>
         </motion.button>
+      </div>
+
+      {/* ── ISOTIPO desktop — directo en section, centrado en toda la pantalla ── */}
+      <div
+        className="absolute z-30 pointer-events-none"
+        style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
+      >
+        <div className="relative pointer-events-auto flex flex-col items-center" style={{ width: 160 }}>
+
+          {/* Hints direccionales al arrastrar */}
+          <AnimatePresence>
+            {isDragging && leftLabel && (
+              <motion.span
+                initial={{ opacity: 0, x: 8 }} animate={{ opacity: hint === 'left' ? 1 : 0.3, x: 0 }} exit={{ opacity: 0 }}
+                className="absolute right-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
+                style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+              >← {leftLabel}</motion.span>
+            )}
+            {isDragging && rightLabel && (
+              <motion.span
+                initial={{ opacity: 0, x: -8 }} animate={{ opacity: hint === 'right' ? 1 : 0.3, x: 0 }} exit={{ opacity: 0 }}
+                className="absolute left-[110%] top-1/2 -translate-y-1/2 text-white font-sans font-light whitespace-nowrap"
+                style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+              >{rightLabel} →</motion.span>
+            )}
+          </AnimatePresence>
+
+          {/* Isotipo arrastrable */}
+          <motion.div
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.3}
+            style={{ x: dragX, rotate: isotopoRotate, scale: isotopoScale }}
+            onDragStart={() => setIsDragging(true)}
+            onDrag={(_, info) => {
+              if (info.offset.x < -20) setHint('left')
+              else if (info.offset.x > 20) setHint('right')
+              else setHint(null)
+            }}
+            onDragEnd={(_, info) => {
+              setIsDragging(false); setHint(null); dragX.set(0)
+              if (info.offset.x < -DRAG_THRESHOLD && currentIndex > 0) setMode(MODES[currentIndex - 1])
+              else if (info.offset.x > DRAG_THRESHOLD && currentIndex < MODES.length - 1) setMode(MODES[currentIndex + 1])
+            }}
+            className="cursor-grab active:cursor-grabbing select-none"
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          >
+            <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.85} />
+          </motion.div>
+
+          {/* Hint en reposo */}
+          <AnimatePresence>
+            {!isDragging && (
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                transition={{ delay: 1.5 }}
+                className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5 whitespace-nowrap"
+              >
+                <div className="flex items-center gap-2">
+                  <motion.span animate={{ x: [-4, 0, -4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>←</motion.span>
+                  <span className="text-white/50 font-sans font-light" style={{ fontSize: '0.55rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>desliza</span>
+                  <motion.span animate={{ x: [4, 0, 4] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }} className="text-white/60" style={{ fontSize: '0.75rem' }}>→</motion.span>
+                </div>
+                <div className="flex items-center gap-3">
+                  {currentIndex > 0 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Yoga</span>}
+                  {currentIndex < MODES.length - 1 && <span className="text-white/35 font-sans font-light" style={{ fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Comunic. Audiovisual</span>}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* ── MOBILE ── */}
