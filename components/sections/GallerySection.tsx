@@ -61,22 +61,17 @@ function Lightbox({ images, index, onClose, onPrev, onNext }: {
 
 // ─── Masonry (Yoga) ───────────────────────────────────────────────────────────
 function MasonryGrid({ images, onSelect }: { images: GalleryImage[]; onSelect: (i: number) => void }) {
-  const col1 = images.filter((_, i) => i % 3 === 0)
-  const col2 = images.filter((_, i) => i % 3 === 1)
-  const col3 = images.filter((_, i) => i % 3 === 2)
-
-  const renderCol = (imgs: GalleryImage[]) =>
-    imgs.map((img, ci) => {
-      const globalIndex = images.indexOf(img)
-      return (
+  return (
+    <div className="columns-2 md:columns-3 gap-3">
+      {images.map((img, i) => (
         <motion.div
           key={img._id}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.7, delay: ci * 0.1, ease }}
-          onClick={() => onSelect(globalIndex)}
-          className="group relative overflow-hidden rounded-xl cursor-pointer"
+          transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease }}
+          onClick={() => onSelect(i)}
+          className="group relative overflow-hidden rounded-xl cursor-pointer mb-3 break-inside-avoid"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={img.src} alt={img.alt} className="w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
@@ -84,14 +79,7 @@ function MasonryGrid({ images, onSelect }: { images: GalleryImage[]; onSelect: (
             <ZoomIn size={24} className="text-white" />
           </div>
         </motion.div>
-      )
-    })
-
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-      <div className="flex flex-col gap-3">{renderCol(col1)}</div>
-      <div className="flex flex-col gap-3 mt-6">{renderCol(col2)}</div>
-      <div className="hidden md:flex flex-col gap-3 mt-12">{renderCol(col3)}</div>
+      ))}
     </div>
   )
 }
@@ -117,12 +105,12 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
   }
 
   return (
-    <div className="relative w-full" style={{ minHeight: '70vh' }}>
+    <div className="relative w-full">
       {/* Layout principal */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_56px] gap-0 items-start">
 
         {/* Imagen */}
-        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', maxHeight: '68vh' }}>
+        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={img._id}
@@ -151,7 +139,7 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
         </div>
 
         {/* Barra lateral derecha — navegación vertical */}
-        <div className="hidden lg:flex flex-col items-center justify-center gap-4 pl-4 h-full" style={{ minHeight: '68vh' }}>
+        <div className="hidden lg:flex flex-col items-center justify-center gap-4 pl-4 h-full">
           <button
             onClick={prev}
             disabled={current === 0}
