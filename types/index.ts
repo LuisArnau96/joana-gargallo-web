@@ -2,6 +2,7 @@ export type Mode = 'yoga' | 'photography'
 
 export interface HeroContent {
   backgroundImage: string
+  isDark: boolean  // true = foto oscura → texto blanco; false = foto clara → texto oscuro
   headline: string
   subheadline: string
   ctaPrimary: string

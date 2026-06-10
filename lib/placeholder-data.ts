@@ -13,8 +13,8 @@ export const siteSettings: SiteSettings = {
 
 export const heroData: HeroData = {
   yoga: {
-    backgroundImage:
-      'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80',
+    backgroundImage: '/images/yoga-studio.jpg',
+    isDark: false,
     headline: 'Encuentra tu equilibrio',
     subheadline:
       'Clases de yoga en Puerto de Sagunto pensadas para reconectar con tu cuerpo, tu respiración y tu calma interior.',
@@ -22,8 +22,8 @@ export const heroData: HeroData = {
     ctaSecondary: 'Conocer más',
   },
   photography: {
-    backgroundImage:
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80',
+    backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80',
+    isDark: true,
     headline: 'La imagen como lenguaje',
     subheadline:
       'Comunicación audiovisual que captura la quietud de los paisajes, la luz del amanecer y la autenticidad de las personas.',

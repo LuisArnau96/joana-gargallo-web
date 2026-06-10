@@ -110,8 +110,6 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
   const next = () => current < images.length - 1 && go(current + 1)
 
   const img = images[current]
-  const pad = (n: number) => String(n + 1).padStart(2, '0')
-
   const variants = {
     enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60, scale: 0.98 }),
     center: { opacity: 1, x: 0, scale: 1 },
@@ -120,21 +118,6 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
 
   return (
     <div className="relative w-full" style={{ minHeight: '70vh' }}>
-      {/* Número grande de fondo */}
-      <div
-        className="absolute top-0 right-0 select-none pointer-events-none z-0"
-        style={{
-          fontFamily: 'Cormorant Garamond, Georgia, serif',
-          fontSize: 'clamp(8rem, 18vw, 16rem)',
-          fontWeight: 300,
-          color: 'rgba(196, 168, 130, 0.07)',
-          lineHeight: 1,
-          letterSpacing: '-0.04em',
-        }}
-      >
-        {pad(current)}
-      </div>
-
       {/* Layout principal */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_56px] gap-0 items-start">
 
@@ -165,27 +148,6 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
             </motion.div>
           </AnimatePresence>
 
-          {/* Contador superpuesto — esquina inferior izquierda */}
-          <div className="absolute bottom-5 left-5 flex items-end gap-3 z-10">
-            <span
-              style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
-                fontSize: '3.5rem',
-                fontWeight: 300,
-                color: 'rgba(255,255,255,0.9)',
-                lineHeight: 1,
-                letterSpacing: '-0.03em',
-              }}
-            >
-              {pad(current)}
-            </span>
-            <span
-              className="text-white/30 font-sans pb-1.5"
-              style={{ fontSize: '0.65rem', letterSpacing: '0.1em' }}
-            >
-              / {pad(images.length - 1)}
-            </span>
-          </div>
         </div>
 
         {/* Barra lateral derecha — navegación vertical */}

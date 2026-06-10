@@ -11,7 +11,7 @@ import { type Mode } from '@/types'
 const MODES: Mode[] = ['yoga', 'photography']
 const DRAG_THRESHOLD = 60
 
-function IsotipoIcon({ width, opacity }: { width: number; opacity?: number }) {
+function IsotipoIcon({ width, opacity, color = 'white' }: { width: number; opacity?: number; color?: string }) {
   const h = Math.round(width * (88 / 102))
   return (
     <svg
@@ -26,7 +26,7 @@ function IsotipoIcon({ width, opacity }: { width: number; opacity?: number }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M6.80359 28.6212L32.5426 7.07962C33.7663 6.05543 35.1356 5.18696 36.6701 4.61013C40.4478 3.19008 48.372 0.673372 56.2963 1.03512C61.2843 1.26284 67.9759 2.5274 73.7854 3.83736C81.3634 5.54609 86.4213 11.8909 86.4213 19.0257V22.9431C86.4213 28.0012 89.1883 32.7242 93.7941 35.5276C100.09 39.3595 102.752 46.6125 99.7953 52.9764C96.9988 58.9959 93.2127 66.373 89.1599 72.0466C80.944 83.5485 65.0599 85.5488 65.0599 85.5488L29.6636 86.9851C21.4906 87.3168 14.541 82.0507 17.677 75.1435C17.7664 74.9466 17.8591 74.7478 17.9553 74.547C19.1279 72.1 19.989 69.9322 20.6206 68.0879C22.0697 63.8568 19.6191 59.6516 15.3633 57.5252L10.2989 54.9948C-0.449871 49.6242 -2.23129 36.1828 6.80359 28.6212Z M38.8158 30.5403L51.9351 19.9565C53.8434 18.417 56.6587 18.2774 58.7379 19.6193C59.9004 20.3696 60.699 21.503 60.9655 22.7807L62.3299 29.3225C62.9096 32.1016 64.5829 34.5902 67.0336 36.3181C70.3533 38.6587 72.3124 42.3838 71.5204 46.1471C69.0823 57.7326 62.1831 64.3106 54.8732 67.794C46.4749 71.7959 38.5769 64.3979 38.5769 55.7404V54.8418C38.5769 52.2889 37.7685 49.7906 36.2494 47.6485C32.3513 42.1518 33.443 34.8749 38.8158 30.5403Z"
-        fill="white"
+        fill={color}
       />
     </svg>
   )
@@ -47,8 +47,17 @@ export function HeroSection() {
   const handleScrollDown = () =>
     document.querySelector('#sobre-mi')?.scrollIntoView({ behavior: 'smooth' })
 
-  // Page bg is always #F7F3EE — gradient blends image into it
-  const pageBg = '#F7F3EE'
+  // Adaptive colors based on photo tone
+  const isDark = content.isDark
+  const pageBg = isPhotography ? '#1A1815' : '#F7F3EE'
+  const textPrimary = isDark ? 'rgba(255,255,255,1)' : 'rgba(44,36,32,0.95)'
+  const textSecondary = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(44,36,32,0.75)'
+  const subtitleColor = isDark ? 'rgba(220,188,138,1)' : 'rgba(139,100,60,1)'
+  const hintColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,36,32,0.55)'
+  const dotActive = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(44,36,32,0.8)'
+  const dotInactive = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(44,36,32,0.25)'
+  const isotipoColor = isDark ? 'white' : '#2C2420'
+  const shadow = isDark ? '0 1px 12px rgba(0,0,0,0.5)' : '0 1px 8px rgba(255,255,255,0.4)'
 
   const subtitle = isPhotography ? 'Fotógrafa · Creadora Audiovisual' : 'Profesora de Yoga'
 
@@ -70,10 +79,10 @@ export function HeroSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Top gradient — subtle dark for navbar readability */}
+      {/* Top gradient — navbar readability */}
       <div
         className="absolute inset-x-0 top-0 z-10 pointer-events-none"
-        style={{ height: '35%', background: 'linear-gradient(to bottom, rgba(20,15,10,0.45) 0%, transparent 100%)' }}
+        style={{ height: '35%', background: isDark ? 'linear-gradient(to bottom, rgba(20,15,10,0.5) 0%, transparent 100%)' : 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, transparent 100%)' }}
       />
 
       {/* Bottom gradient — fades into page background */}
@@ -98,8 +107,8 @@ export function HeroSection() {
             animate={{ opacity: mode === 'yoga' ? 0 : 0.85 }}
             whileHover={{ opacity: mode === 'yoga' ? 0 : 1 }}
             transition={{ duration: 0.4 }}
-            className="font-sans font-medium text-white whitespace-nowrap select-none"
-            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+            className="font-sans font-medium whitespace-nowrap select-none"
+            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', color: textSecondary, textShadow: shadow }}
           >
             ← Yoga
           </motion.button>
@@ -126,7 +135,7 @@ export function HeroSection() {
               whileHover={{ scale: 1.06 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             >
-              <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.92} />
+              <IsotipoIcon width={100} opacity={isDragging ? 1 : 0.92} color={isotipoColor} />
             </motion.div>
           </div>
 
@@ -136,8 +145,8 @@ export function HeroSection() {
             animate={{ opacity: mode === 'photography' ? 0 : 0.85 }}
             whileHover={{ opacity: mode === 'photography' ? 0 : 1 }}
             transition={{ duration: 0.4 }}
-            className="font-sans font-medium text-white whitespace-nowrap select-none"
-            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+            className="font-sans font-medium whitespace-nowrap select-none"
+            style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', letterSpacing: '0.18em', textTransform: 'uppercase', color: textSecondary, textShadow: shadow }}
           >
             Visual →
           </motion.button>
@@ -151,13 +160,14 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.5 }}
-            className="text-center text-white leading-none"
+            className="text-center leading-none"
             style={{
               fontFamily: 'Cormorant Garamond, Georgia, serif',
               fontWeight: 300,
               fontSize: 'clamp(3rem, 8vw, 6.5rem)',
               letterSpacing: '-0.01em',
-              textShadow: '0 2px 24px rgba(0,0,0,0.18)',
+              color: textPrimary,
+              textShadow: shadow,
             }}
           >
             Joana Gargallo
@@ -177,8 +187,8 @@ export function HeroSection() {
               fontSize: 'clamp(0.65rem, 1.4vw, 0.8rem)',
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
-              color: 'rgba(220,188,138,1)',
-              textShadow: '0 1px 12px rgba(0,0,0,0.4)',
+              color: subtitleColor,
+              textShadow: shadow,
             }}
           >
             {subtitle}
@@ -203,7 +213,7 @@ export function HeroSection() {
                   width: mode === m ? 20 : 6,
                   height: 3,
                   borderRadius: 2,
-                  backgroundColor: mode === m ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.3)',
+                  backgroundColor: mode === m ? dotActive : dotInactive,
                 }}
               />
             ))}
@@ -215,8 +225,8 @@ export function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="font-sans font-medium text-white/70"
-                style={{ fontSize: 'clamp(0.55rem, 1vw, 0.65rem)', letterSpacing: '0.16em', textTransform: 'uppercase', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+                className="font-sans font-medium"
+                style={{ fontSize: 'clamp(0.55rem, 1vw, 0.65rem)', letterSpacing: '0.16em', textTransform: 'uppercase', color: hintColor, textShadow: shadow }}
               >
                 Arrastra para ver el otro perfil
               </motion.span>
@@ -232,7 +242,7 @@ export function HeroSection() {
         transition={{ duration: 1, delay: 1 }}
         onClick={handleScrollDown}
         className="absolute bottom-7 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5 hover:opacity-60 transition-opacity"
-        style={{ color: 'rgba(44,36,32,0.5)' }}
+        style={{ color: hintColor }}
       >
         <span style={{ fontSize: '0.56rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontFamily: 'DM Sans, sans-serif' }}>
           Descubrir
