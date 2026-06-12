@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
@@ -214,10 +214,11 @@ export function GallerySection() {
   const [selectedGroup, setSelectedGroup] = useState<GalleryGroup | null>(null)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
+  useEffect(() => { setSelectedGroup(null); setLightboxIndex(null) }, [mode])
+
   const groups = galleryGroups.filter(g => g.category === mode)
   const activeImages = selectedGroup?.images ?? []
 
-  // Reset group when mode changes
   const handleGroupSelect = (g: GalleryGroup) => { setSelectedGroup(g); setLightboxIndex(null) }
   const handleBack = () => { setSelectedGroup(null); setLightboxIndex(null) }
 
