@@ -4,9 +4,8 @@ import { useRef, useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { heroData } from '@/lib/placeholder-data'
 import { ease } from '@/styles/animations'
-import { type Mode } from '@/types'
+import { type Mode, type HeroData } from '@/types'
 
 const MODES: Mode[] = ['yoga', 'photography']
 const DRAG_THRESHOLD = 60
@@ -32,7 +31,7 @@ function IsotipoIcon({ width, opacity, color = 'white' }: { width: number; opaci
   )
 }
 
-export function HeroSection() {
+export function HeroSection({ heroData }: { heroData: HeroData }) {
   const { mode, setMode } = useModeContext()
   const content = heroData[mode]
   const isPhotography = mode === 'photography'

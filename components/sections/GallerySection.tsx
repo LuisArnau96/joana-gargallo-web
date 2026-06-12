@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { galleryGroups } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { cn } from '@/lib/utils'
 import type { GalleryImage, GalleryGroup } from '@/types'
@@ -208,7 +207,7 @@ function PhotoCarousel({ images, onOpenLightbox }: { images: GalleryImage[]; onO
 }
 
 // ─── Section ─────────────────────────────────────────────────────────────────
-export function GallerySection() {
+export function GallerySection({ galleryGroups }: { galleryGroups: GalleryGroup[] }) {
   const { mode } = useModeContext()
   const isPhotography = mode === 'photography'
   const [selectedGroup, setSelectedGroup] = useState<GalleryGroup | null>(null)

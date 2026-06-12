@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import { MapPin, Clock } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { scheduleData } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
+import type { ScheduleData } from '@/types'
 import { getDayLabel } from '@/lib/utils'
 
 const DAY_ORDER = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
@@ -15,7 +15,7 @@ const CLASS_COLORS: Record<string, { bg: string; text: string; dot: string }> = 
   Yin:     { bg: 'rgba(100,90,130,0.10)', text: '#4A4270', dot: '#7A6FAA' },
 }
 
-export function ScheduleSection() {
+export function ScheduleSection({ scheduleData }: { scheduleData: ScheduleData }) {
   const { mode } = useModeContext()
   if (mode === 'photography') return null
 

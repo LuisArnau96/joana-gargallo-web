@@ -5,7 +5,6 @@ import {
   Users, User, Sparkles, Mountain, Camera, Briefcase, CalendarDays,
 } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { services } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { stagger, fadeUp } from '@/styles/animations'
 import { cn } from '@/lib/utils'
@@ -67,7 +66,7 @@ function ServiceCard({ service, isPhotography }: { service: Service; isPhotograp
   )
 }
 
-export function ServicesSection() {
+export function ServicesSection({ services }: { services: Service[] }) {
   const { mode } = useModeContext()
   const isPhotography = mode === 'photography'
   const filtered = services.filter((s) => s.category === mode).sort((a, b) => a.order - b.order)

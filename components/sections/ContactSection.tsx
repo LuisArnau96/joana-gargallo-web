@@ -7,8 +7,8 @@ import { z } from 'zod'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Send, CheckCircle, ExternalLink } from 'lucide-react'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { siteSettings } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
+import type { SiteSettings } from '@/types'
 import { cn } from '@/lib/utils'
 
 const contactSchema = z.object({
@@ -74,7 +74,7 @@ function ContactLink({
   )
 }
 
-export function ContactSection() {
+export function ContactSection({ siteSettings }: { siteSettings: SiteSettings }) {
   const { mode } = useModeContext()
   const isPhotography = mode === 'photography'
   const [sending, setSending] = useState(false)

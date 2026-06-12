@@ -2,12 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useModeContext } from '@/components/providers/ModeProvider'
-import { aboutData } from '@/lib/placeholder-data'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
+import type { AboutData } from '@/types'
 import { slideInLeft, slideInRight } from '@/styles/animations'
 import { cn } from '@/lib/utils'
 
-export function AboutSection() {
+export function AboutSection({ aboutData }: { aboutData: AboutData }) {
   const { mode } = useModeContext()
   const isPhotography = mode === 'photography'
   const content = isPhotography ? aboutData.photography : aboutData.yoga
@@ -55,7 +55,7 @@ export function AboutSection() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={aboutData[mode].profileImage ?? aboutData.profileImage}
+                src={content.profileImage ?? aboutData.profileImage}
                 alt="Joana Gargallo"
                 className="w-full h-full object-cover"
               />
