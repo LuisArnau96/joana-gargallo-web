@@ -14,7 +14,7 @@ export function useMode(): { mode: Mode; setMode: (m: Mode) => void } {
 
   const setMode = useCallback(
     (m: Mode) => {
-      const params = new URLSearchParams(searchParams.toString())
+      const params = new URLSearchParams(window.location.search)
       if (m === 'photography') {
         params.set('modo', 'fotografia')
       } else {
@@ -23,7 +23,7 @@ export function useMode(): { mode: Mode; setMode: (m: Mode) => void } {
       const query = params.toString()
       router.replace(`${pathname}${query ? `?${query}` : ''}`, { scroll: false })
     },
-    [searchParams, router, pathname],
+    [router, pathname],
   )
 
   return { mode, setMode }
