@@ -114,17 +114,40 @@ export function ServicesSection() {
         </div>
 
         <AnimatePresence mode="wait">
-          <motion.div
-            key={`services-grid-${mode}`}
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            {filtered.map((service) => (
-              <ServiceCard key={service._id} service={service} isPhotography={isPhotography} />
-            ))}
+          <motion.div key={`services-grid-${mode}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            {isPhotography ? (
+              // Fotografía: agrupar por group, sin grupo primero
+              (() => {
+                const ungrouped = filtered.filter(s => !s.group)
+                const groups = [...new Set(filtered.filter(s => s.group).map(s => s.group!))]
+                return (
+                  <div className="flex flex-col gap-10">
+                    {ungrouped.length > 0 && (
+                      <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {ungrouped.map(s => <ServiceCard key={s._id} service={s} isPhotography={isPhotography} />)}
+                      </motion.div>
+                    )}
+                    {groups.map(group => (
+                      <div key={group}>
+                        <p className="font-sans font-medium text-sm mb-4" style={{ color: '#C4A882', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                          {group}
+                        </p>
+                        <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
+                          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {filtered.filter(s => s.group === group).map(s => <ServiceCard key={s._id} service={s} isPhotography={isPhotography} />)}
+                        </motion.div>
+                      </div>
+                    ))}
+                  </div>
+                )
+              })()
+            ) : (
+              <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filtered.map(s => <ServiceCard key={s._id} service={s} isPhotography={isPhotography} />)}
+              </motion.div>
+            )}
           </motion.div>
         </AnimatePresence>
 

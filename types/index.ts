@@ -32,11 +32,20 @@ export interface AboutData {
 export interface Service {
   _id: string
   category: 'yoga' | 'photography'
+  group?: string          // grupo visual (solo fotografía)
   title: string
   description: string
   icon: string
   featured: boolean
   order: number
+}
+
+export interface GalleryGroup {
+  _id: string
+  category: 'yoga' | 'photography'
+  name: string
+  coverImage: string
+  images: GalleryImage[]
 }
 
 export interface TimelineItem {

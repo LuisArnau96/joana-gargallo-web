@@ -12,6 +12,7 @@ const DAY_ORDER = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
 const CLASS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
   Hatha:   { bg: 'rgba(107,124,92,0.12)', text: '#4E5E42', dot: '#6B7C5C' },
   Vinyasa: { bg: 'rgba(139,115,85,0.12)', text: '#6B5740', dot: '#8B7355' },
+  Yin:     { bg: 'rgba(100,90,130,0.10)', text: '#4A4270', dot: '#7A6FAA' },
 }
 
 export function ScheduleSection() {
@@ -131,7 +132,7 @@ export function ScheduleSection() {
             className="px-7 py-3 rounded-full font-sans font-medium text-sm tracking-wide text-white transition-all duration-300 hover:scale-[1.02]"
             style={{ backgroundColor: '#8B7355' }}
           >
-            Reservar plaza
+            ¿Tienes dudas? Escríbeme
           </button>
           <p className="font-sans text-sm text-center sm:text-left" style={{ color: '#8B7B6B' }}>
             ¿Prefieres una clase privada?{' '}
@@ -140,7 +141,7 @@ export function ScheduleSection() {
               className="underline underline-offset-2 hover:opacity-70 transition-opacity"
               style={{ color: '#8B7355' }}
             >
-              Escríbeme
+              Contactar
             </button>
           </p>
         </ScrollReveal>

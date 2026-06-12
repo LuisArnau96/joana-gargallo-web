@@ -26,7 +26,7 @@ const ROLES: {
   },
   {
     value: 'photography',
-    label: 'Comunicación Audiovisual',
+    label: 'Creadora Audiovisual',
     links: [
       { label: 'Sobre mí', href: '#sobre-mi' },
       { label: 'Servicios', href: '#servicios' },

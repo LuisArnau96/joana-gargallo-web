@@ -1,4 +1,4 @@
-import type { HeroData, AboutData, Service, TimelineItem, ScheduleData, GalleryImage, SiteSettings } from '@/types'
+import type { HeroData, AboutData, Service, TimelineItem, ScheduleData, GalleryImage, GalleryGroup, SiteSettings } from '@/types'
 
 export const siteSettings: SiteSettings = {
   siteName: 'Joana Gargallo',
@@ -135,6 +135,74 @@ export const services: Service[] = [
     featured: false,
     order: 4,
   },
+  // ── Fotografía de yoga ──
+  {
+    _id: 's8',
+    category: 'photography',
+    group: 'Fotografía de yoga',
+    title: 'Sesiones de práctica',
+    description:
+      'Capturo la práctica en movimiento: posturas, ajustes, la energía del grupo. Fotos auténticas para profesoras de yoga y estudios.',
+    icon: 'Sparkles',
+    featured: true,
+    order: 5,
+  },
+  {
+    _id: 's9',
+    category: 'photography',
+    group: 'Fotografía de yoga',
+    title: 'Clases y talleres',
+    description:
+      'Cobertura completa de tus clases grupales o talleres especiales. Imágenes para redes sociales, web y material promocional.',
+    icon: 'Users',
+    featured: true,
+    order: 6,
+  },
+  {
+    _id: 's10',
+    category: 'photography',
+    group: 'Fotografía de yoga',
+    title: 'Retrato de profesora',
+    description:
+      'Sesión personal para construir tu imagen como profesora. Fotos que transmiten quién eres y cómo enseñas.',
+    icon: 'User',
+    featured: false,
+    order: 7,
+  },
+  // ── Fotografía de producto ──
+  {
+    _id: 's11',
+    category: 'photography',
+    group: 'Fotografía de producto',
+    title: 'Props y accesorios',
+    description:
+      'Fotografía de esterillas, bloques, correas y accesorios de yoga. Imágenes limpias y con estilo para tiendas y catálogos.',
+    icon: 'Briefcase',
+    featured: true,
+    order: 8,
+  },
+  {
+    _id: 's12',
+    category: 'photography',
+    group: 'Fotografía de producto',
+    title: 'Ropa deportiva',
+    description:
+      'Fotografía de moda deportiva y ropa de yoga, en estudio o en exterior. Estética cuidada para marcas con valores.',
+    icon: 'Camera',
+    featured: true,
+    order: 9,
+  },
+  {
+    _id: 's13',
+    category: 'photography',
+    group: 'Fotografía de producto',
+    title: 'Espacios y estudios',
+    description:
+      'Fotografía de interiores para centros de yoga, spas y espacios de bienestar. Mostramos la atmósfera que creas.',
+    icon: 'Mountain',
+    featured: false,
+    order: 10,
+  },
 ]
 
 export const timelineItems: TimelineItem[] = [
@@ -204,10 +272,19 @@ export const scheduleData: ScheduleData = {
       slots: [
         { dayOfWeek: 'M', startTime: '18:00', endTime: '19:00', className: 'Hatha' },
         { dayOfWeek: 'M', startTime: '19:00', endTime: '20:00', className: 'Vinyasa' },
+        { dayOfWeek: 'X', startTime: '18:00', endTime: '19:00', className: 'Yin' },
         { dayOfWeek: 'J', startTime: '18:00', endTime: '19:00', className: 'Hatha' },
         { dayOfWeek: 'J', startTime: '19:00', endTime: '20:00', className: 'Vinyasa' },
       ],
     },
+    // Para añadir un nuevo centro, copia este bloque y cambia name, address y slots:
+    // {
+    //   name: 'Nombre del centro',
+    //   address: 'Dirección',
+    //   slots: [
+    //     { dayOfWeek: 'L', startTime: '10:00', endTime: '11:00', className: 'Hatha' },
+    //   ],
+    // },
   ],
 }
 
@@ -312,4 +389,46 @@ export const galleryImages: GalleryImage[] = [
     width: 864,
     height: 1296,
   },
+]
+
+export const galleryGroups: GalleryGroup[] = [
+  // ── Yoga — grupos por centro ──
+  {
+    _id: 'gg1',
+    category: 'yoga',
+    name: 'Santté Fit',
+    coverImage: '/images/yoga-3.jpg',
+    images: [
+      { _id: 'g1', src: '/images/yoga-1.jpg', alt: 'Postura de extensión en el estudio', category: 'yoga', featured: true, order: 1 },
+      { _id: 'g2', src: '/images/yoga-2.jpg', alt: 'Clase grupal — momento de guía',      category: 'yoga', featured: true, order: 2 },
+      { _id: 'g3', src: '/images/yoga-3.jpg', alt: 'Savasana en clase grupal',             category: 'yoga', featured: false, order: 3 },
+      { _id: 'g4', src: '/images/yoga-4.jpg', alt: 'Ajuste postural individual',           category: 'yoga', featured: false, order: 4 },
+    ],
+  },
+  // Para añadir otro centro: copia el bloque anterior y cambia _id, name, coverImage e images
+
+  // ── Fotografía — grupos por proyecto ──
+  {
+    _id: 'gg2',
+    category: 'photography',
+    name: 'Yoga B&W',
+    coverImage: '/images/foto-3.jpeg',
+    images: [
+      { _id: 'g5', src: '/images/foto-1.jpeg', alt: 'Flexión hacia adelante — B&W', category: 'photography', featured: true, order: 1 },
+      { _id: 'g6', src: '/images/foto-2.jpeg', alt: 'Piernas al cielo — B&W',       category: 'photography', featured: true, order: 2 },
+      { _id: 'g7', src: '/images/foto-3.jpeg', alt: 'Trabajo en pareja — B&W',      category: 'photography', featured: true, order: 3 },
+    ],
+  },
+  {
+    _id: 'gg3',
+    category: 'photography',
+    name: 'Golden Hour',
+    coverImage: '/images/foto-5.jpeg',
+    images: [
+      { _id: 'g8',  src: '/images/foto-4.jpeg', alt: 'Silueta al contraluz dorado',             category: 'photography', featured: false, order: 1 },
+      { _id: 'g9',  src: '/images/foto-5.jpeg', alt: 'Equilibrio sobre las rocas al atardecer', category: 'photography', featured: false, order: 2 },
+      { _id: 'g10', src: '/images/foto-6.jpeg', alt: 'Guerrero III en la playa dorada',         category: 'photography', featured: false, order: 3 },
+    ],
+  },
+  // Para añadir un proyecto: copia un bloque y cambia _id, name, coverImage e images
 ]
