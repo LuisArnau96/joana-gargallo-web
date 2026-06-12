@@ -82,7 +82,7 @@ export function AboutSection() {
               >
                 <h2
                   style={{
-                    fontFamily: 'Cormorant Garamond, Georgia, serif',
+                    fontFamily: 'Poppins, sans-serif',
                     fontWeight: 300,
                     fontSize: 'clamp(1.75rem, 3.5vw, 2.6rem)',
                     letterSpacing: '-0.01em',

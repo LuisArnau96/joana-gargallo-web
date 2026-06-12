@@ -170,7 +170,7 @@ export function HeroSection() {
               textShadow: shadow,
             }}
           >
-            Joana Gargallo
+            joana gargallo
           </motion.h1>
         </AnimatePresence>
 

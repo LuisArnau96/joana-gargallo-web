@@ -130,7 +130,7 @@ export function ContactSection() {
           </span>
           <h2
             style={{
-              fontFamily: 'Cormorant Garamond, Georgia, serif',
+              fontFamily: 'Poppins, sans-serif',
               fontWeight: 300,
               fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
               letterSpacing: '-0.01em',
@@ -205,7 +205,7 @@ export function ContactSection() {
                         'font-serif font-light text-xl',
                         isPhotography ? 'text-[#F0EAE0]' : 'text-[#2C2420]',
                       )}
-                      style={{ fontFamily: 'Cormorant Garamond, Georgia, serif' }}
+                      style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       Mensaje enviado
                     </p>

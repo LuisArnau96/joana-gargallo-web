@@ -97,7 +97,7 @@ export function ServicesSection() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4 }}
                   style={{
-                    fontFamily: 'Cormorant Garamond, Georgia, serif',
+                    fontFamily: 'Poppins, sans-serif',
                     fontWeight: 300,
                     fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
                     letterSpacing: '-0.01em',

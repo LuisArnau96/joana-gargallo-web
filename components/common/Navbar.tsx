@@ -169,7 +169,7 @@ export function Navbar() {
                           {!isActive && <span className="w-1.5 h-1.5 flex-shrink-0" />}
                           <span
                             style={{
-                              fontFamily: 'Cormorant Garamond, Georgia, serif',
+                              fontFamily: 'Poppins, sans-serif',
                               fontSize: '1.7rem',
                               fontWeight: 300,
                               color: isActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',

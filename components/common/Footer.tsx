@@ -20,7 +20,7 @@ export function Footer() {
       <div className="container-max flex flex-col sm:flex-row items-center justify-between gap-4">
         <span
           style={{
-            fontFamily: 'Cormorant Garamond, Georgia, serif',
+            fontFamily: 'Poppins, sans-serif',
             fontWeight: 300,
             fontSize: '1rem',
             letterSpacing: '0.05em',
