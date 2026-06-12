@@ -284,11 +284,7 @@ export function GallerySection() {
             </motion.div>
           ) : (
             <motion.div key={`group-${selectedGroup._id}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-              {isPhotography ? (
-                <PhotoCarousel images={activeImages} onOpenLightbox={setLightboxIndex} />
-              ) : (
-                <MasonryGrid images={activeImages} onSelect={setLightboxIndex} />
-              )}
+              <MasonryGrid images={activeImages} onSelect={setLightboxIndex} />
             </motion.div>
           )}
         </AnimatePresence>
