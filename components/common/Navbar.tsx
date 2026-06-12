@@ -15,7 +15,7 @@ const ROLES: {
 }[] = [
   {
     value: 'yoga',
-    label: 'Yoga',
+    label: 'Profesora de Yoga',
     links: [
       { label: 'Sobre mí', href: '#sobre-mi' },
       { label: 'Servicios', href: '#servicios' },
