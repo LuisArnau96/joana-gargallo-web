@@ -272,7 +272,8 @@ export const scheduleData: ScheduleData = {
       slots: [
         { dayOfWeek: 'M', startTime: '18:00', endTime: '19:00', className: 'Hatha' },
         { dayOfWeek: 'M', startTime: '19:00', endTime: '20:00', className: 'Vinyasa' },
-        { dayOfWeek: 'X', startTime: '18:00', endTime: '19:00', className: 'Yin' },
+        { dayOfWeek: 'X', startTime: '18:00', endTime: '19:00', className: 'Hatha' },
+        { dayOfWeek: 'X', startTime: '19:00', endTime: '20:00', className: 'Vinyasa' },
         { dayOfWeek: 'J', startTime: '18:00', endTime: '19:00', className: 'Hatha' },
         { dayOfWeek: 'J', startTime: '19:00', endTime: '20:00', className: 'Vinyasa' },
       ],
