@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ['yoga', 'profesora yoga', 'Puerto de Sagunto', 'Valencia', 'fotografía', 'clases yoga'],
   openGraph: {
     title: 'Joana Gargallo — Profesora de Yoga · Fotógrafa',
-    description: 'Clases de yoga en Puerto de Sagunto y fotografía de naturaleza y retrato.',
+    description: 'Clases de yoga para todos los niveles y creación audiovisual.',
     locale: 'es_ES',
     type: 'website',
   },
