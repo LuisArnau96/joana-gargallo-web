@@ -91,8 +91,8 @@ export function AboutSection({ aboutData }: { aboutData: AboutData }) {
                   }}
                 >
                   {isPhotography
-                    ? 'La mirada que nace\nde la práctica'
-                    : 'El yoga como\ncamino de vida'}
+                    ? 'Creación\naudiovisual'
+                    : 'Encuentra\ntu equilibrío :)'}
                 </h2>
 
                 <p
