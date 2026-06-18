@@ -92,7 +92,7 @@ export function AboutSection({ aboutData }: { aboutData: AboutData }) {
                 >
                   {isPhotography
                     ? 'Creación\naudiovisual'
-                    : 'Encuentra\ntu equilibrío :)'}
+                    : 'Encuentra\ntu equilibrio'}
                 </h2>
 
                 <p
